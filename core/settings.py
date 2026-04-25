@@ -13,19 +13,12 @@ load_dotenv(ROOT / ".env", override=True)
 load_dotenv(Path.cwd() / ".env", override=True)
 
 # ── LLM Configuration ──────────────────────────────────────────────────────────
-HF_TOKEN         = os.getenv("HF_TOKEN", "")
-HF_BASE_URL      = os.getenv("HF_BASE_URL", "https://api-inference.huggingface.co/v1")
-SARVAM_MODEL     = os.getenv("SARVAM_MODEL", "sarvamai/sarvam-m")
-
-# Optional direct Sarvam API (faster)
-sarvam_api_key   = os.getenv("sarvam_api_key", "")
-SARVAM_API_BASE  = os.getenv("SARVAM_API_BASE", "https://api.sarvam.ai/v1")
-
-# Decide which endpoint to use
-USE_SARVAM_DIRECT = bool(sarvam_api_key)
-LLM_BASE_URL = SARVAM_API_BASE if USE_SARVAM_DIRECT else HF_BASE_URL
-LLM_API_KEY  = sarvam_api_key  if USE_SARVAM_DIRECT else HF_TOKEN
-LLM_MODEL    = "sarvam-m"      if USE_SARVAM_DIRECT else SARVAM_MODEL
+# ── LLM Configuration ──────────────────────────────────────────────────────────
+DATABRICKS_HOST  = os.getenv("DATABRICKS_HOST", "").rstrip("/")
+DATABRICKS_TOKEN = os.getenv("DATABRICKS_TOKEN", "")
+LLM_BASE_URL = f"{DATABRICKS_HOST}/serving-endpoints"
+LLM_API_KEY  = DATABRICKS_TOKEN
+LLM_MODEL    = "databricks-llama-4-maverick"
 
 # ── Data Paths ──────────────────────────────────────────────────────────────────
 BNS_CSV_PATH          = Path(os.getenv("BNS_CSV_PATH",          ROOT / "bns_sections.csv"))
