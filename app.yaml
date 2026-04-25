@@ -1,14 +1,6 @@
-command: [
-  "streamlit",
-  "run",
-  "app.py"
-]
-env:
-  - name: sarvam_api_key
-    valueFrom: sarvam_api_key
-
-  - name: DATABRICKS_HOST
-    value: https://dbc-e6eacb6d-8940.cloud.databricks.com/
-
-  - name: DATABRICKS_TOKEN
-    valueFrom: databricks_pat
+%python
+DATABRICKS_HOST  = os.getenv("DATABRICKS_HOST", "").rstrip("/")
+DATABRICKS_TOKEN = os.getenv("DATABRICKS_TOKEN", "")
+LLM_BASE_URL = f"{DATABRICKS_HOST}/serving-endpoints"
+LLM_API_KEY  = DATABRICKS_TOKEN
+LLM_MODEL    = "databricks-llama-4-maverick"
