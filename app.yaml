@@ -4,7 +4,7 @@ command: [
   "app.py"
 ]
 env:
-  - name: SARVAM_API_KEY
+  - name: sarvam_api_key
     valueFrom: sarvam_api_key
 
   - name: DATABRICKS_HOST
