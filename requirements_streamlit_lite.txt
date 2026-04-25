@@ -1,0 +1,16 @@
+# ──────────────────────────────────────────────────────────────────
+# LITE deployment for Streamlit Cloud — local-fallback mode only.
+# Databricks Vector Search is unavailable here; the app uses local
+# parquet/CSV indexes for retrieval. All 6 tools still work.
+# ──────────────────────────────────────────────────────────────────
+
+streamlit>=1.32.0
+pandas>=2.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+httpx>=0.27.0
+pyarrow>=14.0.0
+openai>=1.30.0
+pdfplumber>=0.10.0
+pypdf>=4.0.0
+tqdm>=4.66.0
